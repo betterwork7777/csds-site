@@ -1,4 +1,25 @@
+'use client';
+import emailjs from '@emailjs/browser';
 export default function Home() {
+const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  emailjs.sendForm(
+    "service_fkdxuls",
+    "template_292vxqb",
+    e.currentTarget,
+    {
+      publicKey: "pDCwJnfvzrjOHWqJq",
+    }
+  )
+  .then(() => {
+    alert("Request sent successfully!");
+    e.currentTarget.reset();
+  })
+  .catch((error: any) => {
+  alert(error?.text || error?.message || JSON.stringify(error));
+});
+};
   const services = [
     {
       title: "Citizenship Application",
@@ -27,7 +48,7 @@ export default function Home() {
   ];
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white to-blue-50 text-gray-900">
+      <main className="min-h-screen bg-gradient-to-b from-white to-blue-50 text-gray-900">
       <nav className="w-full border-b bg-white sticky top-0 z-50">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <div className="text-lg font-bold">CSDS</div>
@@ -54,13 +75,13 @@ export default function Home() {
             </p>
 
             <h1 className="text-4xl font-bold leading-tight md:text-6xl">
-              Clear, Simple Help with Docunents, Forms, Filing.
+              Clear, Simple Help with Documents, Forms, Filing.
               <br />
               We understand how overwelming this process can be, we've been there.
             </h1>
 
             <p className="mt-6 max-w-xl text-lg text-gray-300">
-              We help everyday people handle forms, filings, Documents
+              We help everyday people handle forms, filings, documents
               clearly, affordably, and without confusion.
             </p>
 
@@ -69,7 +90,7 @@ export default function Home() {
                 href="#services"
                 className="rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
               >
-                Get Help Now
+                Get Help Now.
               </a>
 
               <a
@@ -185,52 +206,104 @@ export default function Home() {
       </section>
 
       <section id="contact" className="bg-gray-100 px-6 py-20">
-        <div className="mx-auto max-w-3xl rounded-3xl bg-white p-8 shadow-lg">
-          <h2 className="mb-4 text-3xl font-bold">Contact Us</h2>
+  <div className="mx-auto max-w-5xl rounded-3xl bg-white p-8 shadow-lg md:p-10">
+    <div className="grid gap-10 md:grid-cols-2">
+      <div>
+        <h2 className="mb-4 text-3xl font-bold">Get Help Now</h2>
+        <p className="mb-6 text-gray-600">
+          Stop Guessing. Get It Done Right.
 
-          <p className="mb-6 text-gray-600">
-            Ready to get started? Reach out and we’ll help you move forward.
-          </p>
+	Tell us what you need help with — we’ll guide you step-by-step and make sure your documents are done correctly the first time.
+        </p>
 
-          <div className="space-y-3 text-lg">
-            <p>
-              <strong>Call or text:</strong>{" "}
-              <a
-                href="tel:4255848159"
-                className="font-semibold text-blue-600"
-              >
-                425-584-8159
-              </a>
-            </p>
-
-            <p>
-              <strong>Email:</strong>{" "}
-              <a
-                href="mailto:commonsensedocs@gmail.com"
-                className="font-semibold text-blue-600"
-              >
-                commonsensedocs@gmail.com
-              </a>
-            </p>
-          </div>
-
-          <div className="mt-6 flex flex-wrap gap-4">
+        <div className="space-y-4 text-lg">
+          <p>
+            <strong>Call or text:</strong>{" "}
             <a
               href="tel:4255848159"
-              className="rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
+              className="font-semibold text-blue-600"
             >
-              Call Now
+              425-584-8159
             </a>
+          </p>
 
+          <p>
+            <strong>Email:</strong>{" "}
             <a
               href="mailto:commonsensedocs@gmail.com"
-              className="rounded-lg border border-gray-400 px-6 py-3 font-semibold hover:bg-gray-50"
+              className="font-semibold text-blue-600"
             >
-              Email Us
+              commonsensedocs@gmail.com
             </a>
-          </div>
+          </p>
         </div>
-      </section>
+      </div>
+
+      <form onSubmit={sendEmail} className="space-y-4">
+        <div>
+          <label className="mb-2 block text-sm font-semibold text-gray-700">
+            Full Name
+          </label>
+          <input
+  type="text"
+  name="name"
+  placeholder="Your name"
+  className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
+/>
+        </div>
+
+        <div>
+          <label className="mb-2 block text-sm font-semibold text-gray-700">
+            Email Address
+          </label>
+          <input
+  type="email"
+  name="email"
+  placeholder="you@example.com"
+  className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
+/>
+        </div>
+
+        <div>
+          <label className="mb-2 block text-sm font-semibold text-gray-700">
+            Service Needed
+          </label>
+          <select
+  name="service"
+  className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:..."
+>
+            <option>Citizenship Application</option>
+            <option>Divorce Papers</option>
+            <option>Small Claims</option>
+            <option>Family-Based Green Card</option>
+            <option>Child Support</option>
+            <option>Court Forms</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label className="mb-2 block text-sm font-semibold text-gray-700">
+            Message
+          </label>
+          <textarea
+  name="message"
+  rows={5}
+  placeholder="Briefly describe what you need help with"
+  className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
+></textarea>
+        </div>
+
+        <button
+  type="submit"
+  className="w-full rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
+>
+  Submit Request
+</button>
+      </form>
+    </div>
+  </div>
+</section>
     </main>
   );
 }
