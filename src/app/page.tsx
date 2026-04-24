@@ -4,25 +4,7 @@ const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
   alert("Form submitted (temporary)");
 };
 export default function Home() {
-const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
 
-  emailjs.sendForm(
-    "service_fkdxuls",
-    "template_292vxqb",
-    e.currentTarget,
-    {
-      publicKey: "pDCwJnfvzrjOHWqJq",
-    }
-  )
-  .then(() => {
-    alert("Request sent successfully!");
-    e.currentTarget.reset();
-  })
-  .catch((error: any) => {
-  alert(error?.text || error?.message || JSON.stringify(error));
-});
-};
   const services = [
     {
       title: "Citizenship Application",
