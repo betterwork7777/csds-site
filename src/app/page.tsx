@@ -1,5 +1,8 @@
 'use client';
-import emailjs from '@emailjs/browser';
+const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  alert("Form submitted (temporary)");
+};
 export default function Home() {
 const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
