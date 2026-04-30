@@ -1,4 +1,7 @@
 'use client';
+
+import React from 'react';
+
 const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
   alert("Form submitted (temporary)");
