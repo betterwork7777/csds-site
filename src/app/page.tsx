@@ -9,31 +9,31 @@ const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
 export default function Home() {
 
   const services = [
-    {
-      title: "Citizenship Application",
-      desc: "Accurate preparation for your naturalization filing.",
-    },
-    {
-      title: "Divorce Papers",
-      desc: "Simple, affordable help with uncontested divorce paperwork.",
-    },
-    {
-      title: "Small Claims",
-      desc: "Document support for filing and organizing your case.",
-    },
-    {
-      title: "Family-Based Green Card",
-      desc: "Support for adjustment of status and family petitions.",
-    },
-    {
-      title: "Child Support",
-      desc: "Help preparing documents for support-related matters.",
-    },
-    {
-      title: "Court Forms",
-      desc: "Affordable help with court documents and filings."
-    },
-  ];
+  {
+    title: "Housing & Rent Issues",
+    desc: "Understand notices, organize disputes, and navigate landlord-related paperwork.",
+  },
+  {
+    title: "Debt & Collections",
+    desc: "Upload collection notices and receive guided next-step assistance.",
+  },
+  {
+    title: "Consumer Complaints",
+    desc: "Organize disputes involving refunds, scams, billing, or service problems.",
+  },
+  {
+    title: "Healthcare Billing",
+    desc: "Get help understanding medical bills, insurance notices, and payment options.",
+  },
+  {
+    title: "Government & Benefits",
+    desc: "Navigate applications, notices, and public-service paperwork more clearly.",
+  },
+  {
+    title: "Document Guidance",
+    desc: "AI-assisted explanations and workflow support for everyday administrative documents.",
+  },
+];
 
   return (
       <main className="min-h-screen bg-gradient-to-b from-white to-blue-50 text-gray-900">
@@ -59,18 +59,17 @@ export default function Home() {
         <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2">
           <div>
             <p className="mb-4 inline-block rounded-full bg-blue-500/20 px-4 py-2 text-sm font-semibold uppercase tracking-widest text-blue-300">
-              Common Sense Document Services
+              Common Sense Public and Consumner Services
             </p>
 
             <h1 className="text-4xl font-bold leading-tight md:text-6xl">
-              Clear, Simple Help with Documents, Forms, Filing.
+              AI-Assisted Help for Housing, Debt, Consumer Problems, and Everyday Paperwork.
               <br />
               We understand how overwelming this process can be, we've been there.
             </h1>
 
             <p className="mt-6 max-w-xl text-lg text-gray-300">
-              We help everyday people handle forms, filings, documents
-              clearly, affordably, and without confusion.
+              We help everyday people understand notices, organize paperwork, respond to consumer problems, and navigate complicated systems with clarity.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
@@ -163,31 +162,28 @@ export default function Home() {
           <div className="rounded-2xl border p-6 shadow-sm">
             <h3 className="mb-2 text-lg font-bold">Phase 1</h3>
             <p className="text-gray-600">
-              Document preparation for immigration, divorce, and court forms.
+              AI-assisted document understanding and organizational workflows.
             </p>
           </div>
 
           <div className="rounded-2xl border p-6 shadow-sm">
             <h3 className="mb-2 text-lg font-bold">Phase 2</h3>
             <p className="text-gray-600">
-              Government filings including L&amp;I claims, DHS requests, and
-              official submissions.
+              Upload notices, identify deadlines, and generate guided next-step responses.
             </p>
           </div>
 
           <div className="rounded-2xl border p-6 shadow-sm">
             <h3 className="mb-2 text-lg font-bold">Phase 3</h3>
             <p className="text-gray-600">
-              Consumer complaint tools to help individuals take action against
-              corporations.
+              Consumer problem-resolution tools for housing, debt, billing, and disputes.
             </p>
           </div>
 
           <div className="rounded-2xl border p-6 shadow-sm">
             <h3 className="mb-2 text-lg font-bold">Future</h3>
             <p className="text-gray-600">
-              AI-powered tools that help generate, organize, and track cases
-              more efficiently.
+             A unified AI-powered platform designed to help ordinary people navigate overwhelming systems with clarity and confidence.
             </p>
           </div>
         </div>
