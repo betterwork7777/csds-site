@@ -39,7 +39,7 @@ export default function Home() {
       <main className="min-h-screen bg-gradient-to-b from-white to-blue-50 text-gray-900">
       <nav className="w-full border-b bg-white sticky top-0 z-50">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <div className="text-lg font-bold">CSPCS</div>
+          <div className="text-lg font-bold">Common Sense</div>
 
           <div className="space-x-6">
             <a href="#" className="text-gray-700 hover:text-blue-600">
@@ -77,7 +77,7 @@ export default function Home() {
                 href="#upload"
                 className="rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
               >
-                Get Help Now.
+                Upload a Notice
               </a>
 
               <a
@@ -138,7 +138,7 @@ export default function Home() {
               <p className="leading-7 text-gray-600">{service.desc}</p>
 
               <a
-                href="#contact"
+                href="#upload"
                 className="mt-4 inline-block text-sm font-semibold text-blue-600 hover:text-blue-800"
               >
                 Upload & Begin →
