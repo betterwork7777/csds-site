@@ -39,7 +39,7 @@ export default function Home() {
       <main className="min-h-screen bg-gradient-to-b from-white to-blue-50 text-gray-900">
       <nav className="w-full border-b bg-white sticky top-0 z-50">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <div className="text-lg font-bold">CSDS</div>
+          <div className="text-lg font-bold">CSPCS</div>
 
           <div className="space-x-6">
             <a href="#" className="text-gray-700 hover:text-blue-600">
@@ -74,7 +74,7 @@ export default function Home() {
 
             <div className="mt-8 flex flex-wrap gap-4">
               <a
-                href="#services"
+                href="#upload"
                 className="rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
               >
                 Get Help Now.
@@ -141,7 +141,7 @@ export default function Home() {
                 href="#contact"
                 className="mt-4 inline-block text-sm font-semibold text-blue-600 hover:text-blue-800"
               >
-                Start Here →
+                Upload & Begin →
               </a>
             </div>
           ))}
@@ -187,12 +187,81 @@ export default function Home() {
           </div>
         </div>
       </section>
+		  <section id="upload" className="bg-blue-50 px-6 py-20">
+  <div className="mx-auto max-w-5xl rounded-3xl bg-white p-8 shadow-lg md:p-10">
+    <div className="mb-8 text-center">
+      <h2 className="text-3xl font-bold">Upload a Debt or Collection Notice</h2>
+      <p className="mx-auto mt-4 max-w-2xl text-gray-600">
+        Upload a collection letter, creditor notice, medical bill, or debt-related document.
+        We’ll help you understand what it is, what details matter, and what possible next steps may apply.
+      </p>
+    </div>
+
+    <form className="space-y-5">
+      <div>
+        <label className="mb-2 block text-sm font-semibold text-gray-700">
+          What type of document is this?
+        </label>
+        <select className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-blue-500">
+          <option>Collection Notice</option>
+          <option>Credit Card Debt</option>
+          <option>Medical Bill</option>
+          <option>Debt Lawsuit / Court Notice</option>
+          <option>Payment Demand Letter</option>
+          <option>Other Debt-Related Document</option>
+        </select>
+      </div>
+
+      <div>
+        <label className="mb-2 block text-sm font-semibold text-gray-700">
+          Upload Document
+        </label>
+        <input
+          type="file"
+          accept=".pdf,.jpg,.jpeg,.png"
+          className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 outline-none focus:border-blue-500"
+        />
+        <p className="mt-2 text-sm text-gray-500">
+          Accepted formats: PDF, JPG, PNG.
+        </p>
+      </div>
+
+      <div>
+        <label className="mb-2 block text-sm font-semibold text-gray-700">
+          Briefly describe what you’re worried about
+        </label>
+        <textarea
+          rows={4}
+          placeholder="Example: I received this collection letter and I don’t know if I need to respond."
+          className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
+        ></textarea>
+      </div>
+
+      <button
+        type="button"
+        onClick={() =>
+          alert(
+            "Temporary: Document received. AI analysis feature will be connected next."
+          )
+        }
+        className="w-full rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
+      >
+        Analyze My Notice
+      </button>
+    </form>
+
+    <div className="mt-8 rounded-2xl border border-yellow-200 bg-yellow-50 p-5 text-sm text-yellow-900">
+      <strong>Important:</strong> This tool provides educational and self-help information only.
+      It does not provide legal advice, financial advice, debt settlement services, or professional representation.
+    </div>
+  </div>
+</section>
 
       <section id="contact" className="bg-gray-100 px-6 py-20">
   <div className="mx-auto max-w-5xl rounded-3xl bg-white p-8 shadow-lg md:p-10">
     <div className="grid gap-10 md:grid-cols-2">
       <div>
-        <h2 className="mb-4 text-3xl font-bold">Get Help Now</h2>
+        <h2 className="mb-4 text-3xl font-bold">Upload a Notice</h2>
         <p className="mb-6 text-gray-600">
           Stop Guessing. Get It Done Right.
 
@@ -253,7 +322,7 @@ export default function Home() {
           </label>
           <select
   name="service"
-  className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:..."
+  className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
 >
             <option>Housing & Rent Issues</option>
 <option>Debt & Collections</option>
