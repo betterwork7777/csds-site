@@ -59,7 +59,7 @@ export default function Home() {
         <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2">
           <div>
             <p className="mb-4 inline-block rounded-full bg-blue-500/20 px-4 py-2 text-sm font-semibold uppercase tracking-widest text-blue-300">
-              Common Sense Public and Consumner Services
+              Common Sense Public and Consumer Services
             </p>
 
             <h1 className="text-4xl font-bold leading-tight md:text-6xl">
