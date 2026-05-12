@@ -65,7 +65,7 @@ export default function Home() {
             <h1 className="text-4xl font-bold leading-tight md:text-6xl">
               AI-Assisted Help for Housing, Debt, Consumer Problems, and Everyday Paperwork.
               <br />
-              We understand how overwelming this process can be, we've been there.
+              We understand how overwhelming this process can be, we've been there.
             </h1>
 
             <p className="mt-6 max-w-xl text-lg text-gray-300">
@@ -100,14 +100,13 @@ export default function Home() {
 
             <div className="mt-6 space-y-4 text-gray-300">
               <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                Clear support for forms and filings
+                Plain-English explanations for confusing notices
               </div>
               <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                Straightforward help without the runaround
+                Guided workflows for housing, debt, billing, and consumer issues
               </div>
               <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                Built for everyday people, not big institutions or expensive
-                lawyers
+                Built for everyday people facing complicated systems
               </div>
             </div>
           </div>
@@ -118,7 +117,7 @@ export default function Home() {
         <div className="mb-12 text-center">
           <h2 className="text-3xl font-bold md:text-4xl">Our Services</h2>
           <p className="mx-auto mt-4 max-w-2xl text-gray-600">
-            Reliable document preparation support for individuals and families.
+            AI-assisted support to help people understand notices, organize paperwork, and navigate everyday consumer problems.
           </p>
         </div>
 
@@ -197,7 +196,7 @@ export default function Home() {
         <p className="mb-6 text-gray-600">
           Stop Guessing. Get It Done Right.
 
-	Tell us what you need help with — we’ll guide you step-by-step and make sure your documents are done correctly the first time.
+	Tell us what kind of notice, bill, dispute, or paperwork you’re dealing with — we’ll help you understand it and guide you toward possible next steps.
         </p>
 
         <div className="space-y-4 text-lg">
@@ -256,13 +255,13 @@ export default function Home() {
   name="service"
   className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:..."
 >
-            <option>Citizenship Application</option>
-            <option>Divorce Papers</option>
-            <option>Small Claims</option>
-            <option>Family-Based Green Card</option>
-            <option>Child Support</option>
-            <option>Court Forms</option>
-            <option>Other</option>
+            <option>Housing & Rent Issues</option>
+<option>Debt & Collections</option>
+<option>Consumer Complaints</option>
+<option>Healthcare Billing</option>
+<option>Government & Benefits</option>
+<option>Document Guidance</option>
+<option>Other</option>
           </select>
         </div>
 
