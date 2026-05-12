@@ -1,12 +1,16 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 
 const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
   alert("Form submitted (temporary)");
 };
 export default function Home() {
+	const [debtDocType, setDebtDocType] = useState("Collection Notice");
+const [debtConcern, setDebtConcern] = useState("");
+const [debtFileName, setDebtFileName] = useState("");
+const [showDebtResult, setShowDebtResult] = useState(false);
 
   const services = [
   {
@@ -198,57 +202,101 @@ export default function Home() {
     </div>
 
     <form className="space-y-5">
-      <div>
-        <label className="mb-2 block text-sm font-semibold text-gray-700">
-          What type of document is this?
-        </label>
-        <select className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-blue-500">
-          <option>Collection Notice</option>
-          <option>Credit Card Debt</option>
-          <option>Medical Bill</option>
-          <option>Debt Lawsuit / Court Notice</option>
-          <option>Payment Demand Letter</option>
-          <option>Other Debt-Related Document</option>
-        </select>
-      </div>
+  <div>
+    <label className="mb-2 block text-sm font-semibold text-gray-700">
+      What type of document is this?
+    </label>
+    <select
+      value={debtDocType}
+      onChange={(e) => setDebtDocType(e.target.value)}
+      className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
+    >
+      <option>Collection Notice</option>
+      <option>Credit Card Debt</option>
+      <option>Medical Bill</option>
+      <option>Debt Lawsuit / Court Notice</option>
+      <option>Payment Demand Letter</option>
+      <option>Other Debt-Related Document</option>
+    </select>
+  </div>
 
-      <div>
-        <label className="mb-2 block text-sm font-semibold text-gray-700">
-          Upload Document
-        </label>
-        <input
-          type="file"
-          accept=".pdf,.jpg,.jpeg,.png"
-          className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 outline-none focus:border-blue-500"
-        />
-        <p className="mt-2 text-sm text-gray-500">
-          Accepted formats: PDF, JPG, PNG.
-        </p>
-      </div>
+  <div>
+    <label className="mb-2 block text-sm font-semibold text-gray-700">
+      Upload Document
+    </label>
+    <input
+      type="file"
+      accept=".pdf,.jpg,.jpeg,.png"
+      onChange={(e) => {
+        const file = e.target.files?.[0];
+        setDebtFileName(file ? file.name : "");
+      }}
+      className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 outline-none focus:border-blue-500"
+    />
+    <p className="mt-2 text-sm text-gray-500">
+      Accepted formats: PDF, JPG, PNG.
+    </p>
+  </div>
 
-      <div>
-        <label className="mb-2 block text-sm font-semibold text-gray-700">
-          Briefly describe what you’re worried about
-        </label>
-        <textarea
-          rows={4}
-          placeholder="Example: I received this collection letter and I don’t know if I need to respond."
-          className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
-        ></textarea>
-      </div>
+  <div>
+    <label className="mb-2 block text-sm font-semibold text-gray-700">
+      Briefly describe what you’re worried about
+    </label>
+    <textarea
+      rows={4}
+      value={debtConcern}
+      onChange={(e) => setDebtConcern(e.target.value)}
+      placeholder="Example: I received this collection letter and I don’t know if I need to respond."
+      className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
+    ></textarea>
+  </div>
 
-      <button
-        type="button"
-        onClick={() =>
-          alert(
-            "Temporary: Document received. AI analysis feature will be connected next."
-          )
-        }
-        className="w-full rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
-      >
-        Analyze My Notice
-      </button>
-    </form>
+  <button
+    type="button"
+    onClick={() => setShowDebtResult(true)}
+    className="w-full rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
+  >
+    Analyze My Notice
+  </button>
+</form>
+
+{showDebtResult && (
+  <div className="mt-8 rounded-2xl border border-blue-200 bg-blue-50 p-6">
+    <h3 className="mb-3 text-xl font-bold text-blue-900">
+      Preliminary Document Review
+    </h3>
+
+    <div className="space-y-3 text-gray-700">
+      <p>
+        <strong>Document Type:</strong> {debtDocType}
+      </p>
+
+      <p>
+        <strong>Uploaded File:</strong>{" "}
+        {debtFileName || "No file selected yet"}
+      </p>
+
+      <p>
+        <strong>Your Concern:</strong>{" "}
+        {debtConcern || "No concern entered yet"}
+      </p>
+
+      <p>
+        <strong>Status:</strong> Ready for AI-assisted review.
+      </p>
+
+      <p>
+        <strong>Possible focus areas:</strong> deadlines, creditor information,
+        amount claimed, response options, and important warning language.
+      </p>
+    </div>
+
+    <div className="mt-5 rounded-xl border border-yellow-200 bg-yellow-50 p-4 text-sm text-yellow-900">
+      This is a temporary preview result. Full AI document analysis, OCR reading,
+      deadline extraction, and response guidance will be connected in the next phase.
+    </div>
+  </div>
+)}
 
     <div className="mt-8 rounded-2xl border border-yellow-200 bg-yellow-50 p-5 text-sm text-yellow-900">
       <strong>Important:</strong> This tool provides educational and self-help information only.
