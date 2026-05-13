@@ -253,12 +253,21 @@ const [isAnalyzingDebt, setIsAnalyzingDebt] = useState(false);
   </div>
 
   <button
-    type="button"
-    onClick={() => setShowDebtResult(true)}
-    className="w-full rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
-  >
-    Analyze My Notice
-  </button>
+  type="button"
+  onClick={() => {
+    setIsAnalyzingDebt(true);
+    setShowDebtResult(false);
+
+    setTimeout(() => {
+      setIsAnalyzingDebt(false);
+      setShowDebtResult(true);
+    }, 2000);
+  }}
+  className="w-full rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700 disabled:bg-blue-400"
+  disabled={isAnalyzingDebt}
+>
+  {isAnalyzingDebt ? "Analyzing Document..." : "Analyze My Notice"}
+</button>
 </form>
 
 {isAnalyzingDebt && (
