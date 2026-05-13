@@ -11,6 +11,7 @@ export default function Home() {
 const [debtConcern, setDebtConcern] = useState("");
 const [debtFileName, setDebtFileName] = useState("");
 const [showDebtResult, setShowDebtResult] = useState(false);
+const [isAnalyzingDebt, setIsAnalyzingDebt] = useState(false);	
 
   const services = [
   {
@@ -259,6 +260,17 @@ const [showDebtResult, setShowDebtResult] = useState(false);
     Analyze My Notice
   </button>
 </form>
+
+{isAnalyzingDebt && (
+  <div className="mt-8 rounded-2xl border border-blue-200 bg-blue-50 p-6 text-center">
+    <p className="text-lg font-semibold text-blue-900">
+      Analyzing your document...
+    </p>
+    <p className="mt-2 text-gray-600">
+      Reviewing document type, key concerns, possible deadlines, and response options.
+    </p>
+  </div>
+)}
 
 {showDebtResult && (
   <div className="mt-8 rounded-2xl border border-blue-200 bg-blue-50 p-6">
