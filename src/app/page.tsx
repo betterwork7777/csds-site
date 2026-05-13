@@ -20,6 +20,8 @@ const getDebtAnalysis = () => {
       summary: "This appears to involve a medical bill or healthcare-related balance.",
       urgency: "Review the billing date, insurance status, payment deadline, and whether the bill has already gone to collections.",
       nextSteps: "Possible next steps may include requesting an itemized bill, checking insurance explanation of benefits, asking about financial assistance, or disputing billing errors.",
+		urgencyLevel: "Moderate",
+confidence: "82%",
     };
   }
 
@@ -28,6 +30,8 @@ const getDebtAnalysis = () => {
       summary: "This may involve a court-related debt notice or lawsuit document.",
       urgency: "Court deadlines can be very important. Look carefully for response dates, hearing dates, court name, case number, and plaintiff information.",
       nextSteps: "Possible next steps may include organizing the document, confirming deadlines, reviewing whether a response is required, and seeking licensed help if court action is involved.",
+		urgencyLevel: "High",
+confidence: "88%",
     };
   }
 
@@ -36,6 +40,8 @@ const getDebtAnalysis = () => {
       summary: "This appears to involve credit card debt or a creditor balance.",
       urgency: "Important details may include the creditor name, account number, claimed amount, payment deadline, and whether the account has been transferred to collections.",
       nextSteps: "Possible next steps may include requesting debt validation, checking account records, reviewing credit reports, or organizing payment/dispute options.",
+		urgencyLevel: "Moderate",
+confidence: "84%",
     };
   }
 
@@ -44,6 +50,8 @@ const getDebtAnalysis = () => {
       summary: "This appears to be a demand for payment.",
       urgency: "Pay attention to the amount requested, deadline, sender, reason for payment, and any language threatening further action.",
       nextSteps: "Possible next steps may include verifying the claim, collecting records, requesting clarification, or preparing a written response.",
+		urgencyLevel: "Moderate",
+confidence: "80%",
     };
   }
 
@@ -51,6 +59,8 @@ const getDebtAnalysis = () => {
     summary: "This appears to be a debt or collection-related document.",
     urgency: "Important details may include the sender, amount claimed, response deadline, account information, and any warning language.",
     nextSteps: "Possible next steps may include requesting validation, organizing records, reviewing deadlines, and preparing a self-help response.",
+	  urgencyLevel: "Moderate",
+confidence: "78%",
   };
 };
 
@@ -348,6 +358,13 @@ const debtAnalysis = getDebtAnalysis();
       <p>
   <strong>Status:</strong> Ready for AI-assisted review.
 </p>
+	<p>
+  <strong>Urgency Level:</strong> {debtAnalysis.urgencyLevel}
+</p>
+
+<p>
+  <strong>AI Confidence:</strong> {debtAnalysis.confidence}
+</p>	
 
 <p>
   <strong>Preliminary Summary:</strong> {debtAnalysis.summary}
