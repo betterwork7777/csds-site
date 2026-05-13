@@ -1,6 +1,19 @@
 'use client';
 
 import React, { useState } from 'react';
+
+
+const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  alert("Form submitted (temporary)");
+};
+export default function Home() {
+	const [debtDocType, setDebtDocType] = useState("Collection Notice");
+const [debtConcern, setDebtConcern] = useState("");
+const [debtFileName, setDebtFileName] = useState("");
+const [showDebtResult, setShowDebtResult] = useState(false);
+const [isAnalyzingDebt, setIsAnalyzingDebt] = useState(false);
+
 const getDebtAnalysis = () => {
   if (debtDocType === "Medical Bill") {
     return {
@@ -41,18 +54,7 @@ const getDebtAnalysis = () => {
   };
 };
 
-const debtAnalysis = getDebtAnalysis();
-
-const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  alert("Form submitted (temporary)");
-};
-export default function Home() {
-	const [debtDocType, setDebtDocType] = useState("Collection Notice");
-const [debtConcern, setDebtConcern] = useState("");
-const [debtFileName, setDebtFileName] = useState("");
-const [showDebtResult, setShowDebtResult] = useState(false);
-const [isAnalyzingDebt, setIsAnalyzingDebt] = useState(false);	
+const debtAnalysis = getDebtAnalysis();	
 
   const services = [
   {
