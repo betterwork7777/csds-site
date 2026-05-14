@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { supabase } from "../lib/supabase";
 
 
 const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
@@ -13,6 +14,8 @@ const [debtConcern, setDebtConcern] = useState("");
 const [debtFileName, setDebtFileName] = useState("");
 const [showDebtResult, setShowDebtResult] = useState(false);
 const [isAnalyzingDebt, setIsAnalyzingDebt] = useState(false);
+const [debtFile, setDebtFile] = useState<File | null>(null);
+const [uploadStatus, setUploadStatus] = useState("");
 
 const getDebtAnalysis = () => {
   if (debtDocType === "Medical Bill") {
@@ -293,9 +296,10 @@ const debtAnalysis = getDebtAnalysis();
       type="file"
       accept=".pdf,.jpg,.jpeg,.png"
       onChange={(e) => {
-        const file = e.target.files?.[0];
-        setDebtFileName(file ? file.name : "");
-      }}
+  const file = e.target.files?.[0] || null;
+  setDebtFile(file);
+  setDebtFileName(file ? file.name : "");
+}}
       className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 outline-none focus:border-blue-500"
     />
     <p className="mt-2 text-sm text-gray-500">
@@ -318,20 +322,45 @@ const debtAnalysis = getDebtAnalysis();
 
   <button
   type="button"
-  onClick={() => {
-    setIsAnalyzingDebt(true);
-    setShowDebtResult(false);
+  onClick={async () => {
+  setIsAnalyzingDebt(true);
+  setShowDebtResult(false);
+  setUploadStatus("");
 
-    setTimeout(() => {
+  if (debtFile) {
+    const filePath = `uploads/${Date.now()}-${debtFile.name}`;
+
+    const { error } = await supabase.storage
+      .from("debt-documents")
+      .upload(filePath, debtFile);
+
+    if (error) {
       setIsAnalyzingDebt(false);
-      setShowDebtResult(true);
-    }, 2000);
-  }}
+      setUploadStatus("Upload failed. Please try again.");
+      return;
+    }
+
+    setUploadStatus("Document uploaded successfully.");
+  } else {
+    setUploadStatus("No file selected. Showing preview only.");
+  }
+
+  setTimeout(() => {
+    setIsAnalyzingDebt(false);
+    setShowDebtResult(true);
+  }, 2000);
+}}
   className="w-full rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700 disabled:bg-blue-400"
   disabled={isAnalyzingDebt}
 >
   {isAnalyzingDebt ? "Analyzing Document..." : "Analyze My Notice"}
 </button>
+
+{uploadStatus && (
+  <p className="text-sm font-semibold text-blue-700">
+    {uploadStatus}
+  </p>
+)}
 </form>
 
 {isAnalyzingDebt && (
