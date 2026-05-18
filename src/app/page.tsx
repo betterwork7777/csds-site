@@ -340,7 +340,15 @@ const debtAnalysis = getDebtAnalysis();
       return;
     }
 
-    setUploadStatus("Document uploaded successfully.");
+    await supabase.from("document_uploads").insert({
+  document_type: debtDocType,
+  concern: debtConcern,
+  file_name: debtFile.name,
+  file_path: filePath,
+  status: "uploaded",
+});
+
+setUploadStatus("Document uploaded successfully.");
   } else {
     setUploadStatus("No file selected. Showing preview only.");
   }
