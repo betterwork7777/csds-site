@@ -363,6 +363,25 @@ setUploadStatus("Document uploaded successfully.");
 >
   {isAnalyzingDebt ? "Analyzing Document..." : "Analyze My Notice"}
 </button>
+<button
+  type="button"
+  onClick={async () => {
+    const response = await fetch("/api/ocr", {
+      method: "POST",
+    });
+
+    const data = await response.json();
+
+    alert(
+      data.extractedText?.slice(0, 1000) ||
+      data.message ||
+      "No response"
+    );
+  }}
+  className="mt-4 w-full rounded-xl bg-black px-6 py-3 font-semibold text-white hover:bg-gray-800"
+>
+  Test OCR
+</button>		
 
 {uploadStatus && (
   <p className="text-sm font-semibold text-blue-700">
