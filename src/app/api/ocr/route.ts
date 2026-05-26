@@ -1,6 +1,13 @@
 import { NextResponse } from "next/server";
 import vision from "@google-cloud/vision";
 
+export async function GET() {
+  return Response.json({
+    success: true,
+    message: "OCR route is live",
+  });
+}
+
 export async function POST() {
   try {
     const credentials = JSON.parse(
