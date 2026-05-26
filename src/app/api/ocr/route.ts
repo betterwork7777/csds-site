@@ -18,15 +18,22 @@ export async function POST() {
       credentials,
     });
 
+    const [result] = await client.textDetection(
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Declaration_of_Independence_%281819%29.jpg/800px-Declaration_of_Independence_%281819%29.jpg"
+    );
+
+    const detections = result.textAnnotations;
+    const text = detections?.[0]?.description || "No text found";
+
     return NextResponse.json({
       success: true,
-      message: "Google Vision client connected successfully",
+      extractedText: text,
     });
   } catch (error) {
     return NextResponse.json(
       {
         success: false,
-        message: "Google Vision connection failed",
+        message: "Google Vision OCR failed",
         error: String(error),
       },
       { status: 500 }
