@@ -18,9 +18,14 @@ export async function POST() {
       credentials,
     });
 
-    const [result] = await client.textDetection(
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Declaration_of_Independence_%281819%29.jpg/800px-Declaration_of_Independence_%281819%29.jpg"
-    );
+    const [result] = await client.textDetection({
+      image: {
+        source: {
+          imageUri:
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Declaration_of_Independence_%281819%29.jpg/800px-Declaration_of_Independence_%281819%29.jpg",
+        },
+      },
+    });
 
     const detections = result.textAnnotations;
     const text = detections?.[0]?.description || "No text found";
