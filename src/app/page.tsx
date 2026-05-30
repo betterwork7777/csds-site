@@ -373,10 +373,11 @@ setUploadStatus("Document uploaded successfully.");
     const data = await response.json();
 
     alert(
-      data.extractedText?.slice(0, 1000) ||
-      data.message ||
-      "No response"
-    );
+  data.extractedText?.slice(0, 1000) ||
+  data.error ||
+  data.message ||
+  "No response"
+);
   }}
   className="mt-4 w-full rounded-xl bg-black px-6 py-3 font-semibold text-white hover:bg-gray-800"
 >
