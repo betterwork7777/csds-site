@@ -84,26 +84,32 @@ const debtAnalysis = getDebtAnalysis();
   {
     title: "Housing & Rent Issues",
     desc: "Understand notices, organize disputes, and navigate landlord-related paperwork.",
+    href: "/housing",
   },
   {
     title: "Debt & Collections",
     desc: "Upload collection notices and receive guided next-step assistance.",
+    href: "/debt",
   },
   {
     title: "Consumer Complaints",
     desc: "Organize disputes involving refunds, scams, billing, or service problems.",
+    href: "/consumer",
   },
   {
     title: "Healthcare Billing",
     desc: "Get help understanding medical bills, insurance notices, and payment options.",
+    href: "/medical",
   },
   {
     title: "Government & Benefits",
     desc: "Navigate applications, notices, and public-service paperwork more clearly.",
+    href: "/benefits",
   },
   {
     title: "Document Guidance",
     desc: "AI-assisted explanations and workflow support for everyday administrative documents.",
+    href: "/documents",
   },
 ];
 
@@ -210,7 +216,7 @@ const debtAnalysis = getDebtAnalysis();
               <p className="leading-7 text-gray-600">{service.desc}</p>
 
               <a
-                href="#upload"
+                href={service.href}
                 className="mt-4 inline-block text-sm font-semibold text-blue-600 hover:text-blue-800"
               >
                 Upload & Begin →
