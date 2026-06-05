@@ -1,4 +1,4 @@
-import ServicePage from "@/components/ServicePage";
+import ServicePage from "../components/ServicePage";
 
 export default function DebtPage() {
   return (
