@@ -82,14 +82,24 @@ export default function ServicePage({
         </a>
 
         <section className="mt-6 overflow-hidden rounded-3xl bg-white shadow-xl">
-          <div className={`border-b p-8 ${style.soft}`}>
-            <p
-              className={`text-sm font-semibold uppercase tracking-wide ${style.accentText}`}
-            >
-              {label}
-            </p>
+          <div className={`border-b p-8 md:p-10 ${style.soft}`}>
+            <div className="flex flex-wrap items-center gap-3">
+              <span
+                className={`rounded-full bg-white px-4 py-2 text-sm font-bold shadow-sm ${style.accentText}`}
+              >
+                {label}
+              </span>
 
-            <h1 className="mt-3 max-w-4xl text-4xl font-bold tracking-tight md:text-5xl">
+              <span className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-600 shadow-sm">
+                Document review preview
+              </span>
+
+              <span className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-600 shadow-sm">
+                Future alerts ready
+              </span>
+            </div>
+
+            <h1 className="mt-6 max-w-4xl text-4xl font-bold tracking-tight md:text-5xl">
               {title}
             </h1>
 
@@ -106,15 +116,15 @@ export default function ServicePage({
               </a>
 
               <a
-                href="/contact"
+                href="/"
                 className="rounded-xl border border-gray-300 bg-white px-6 py-3 font-semibold text-gray-700 hover:bg-gray-50"
               >
-                Ask a Question
+                Review Other Services
               </a>
             </div>
           </div>
 
-          <div className="p-8">
+          <div className="p-8 md:p-10">
             <div className="grid gap-5 md:grid-cols-3">
               <div className="rounded-2xl border bg-white p-5 shadow-sm">
                 <p className="text-sm font-semibold text-gray-500">Focus</p>
@@ -145,6 +155,20 @@ export default function ServicePage({
                   information, highlight deadlines or warning language, and
                   prepare the next self-help document step.
                 </p>
+
+                <div className="mt-5 rounded-xl bg-slate-50 p-4">
+                  <p className="text-sm font-bold text-gray-800">
+                    Good things to have ready:
+                  </p>
+
+                  <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-gray-600">
+                    <li>Notice or letter date</li>
+                    <li>Deadline or due date</li>
+                    <li>Names of the company, landlord, agency, or sender</li>
+                    <li>Amount claimed, if money is involved</li>
+                    <li>Any response instructions listed on the document</li>
+                  </ul>
+                </div>
               </div>
 
               <div className="rounded-2xl border p-6 shadow-sm">
@@ -179,36 +203,91 @@ export default function ServicePage({
               </div>
             </div>
 
-            <div className="mt-8 rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm leading-6 text-amber-900">
-              {disclaimer}
+            <div className="mt-8 grid gap-6 lg:grid-cols-2">
+              <div className="rounded-2xl border border-red-100 bg-red-50 p-6">
+                <h2 className="text-xl font-bold text-red-900">
+                  Deadline & alert preview
+                </h2>
+
+                <p className="mt-3 text-sm leading-6 text-red-800">
+                  Future versions can keep important dates visible until the
+                  user manually clears them. This is designed for deadlines,
+                  notice dates, response dates, follow-ups, and court or agency
+                  reminders.
+                </p>
+
+                <div className="mt-4 rounded-xl bg-white p-4 text-sm text-red-900 shadow-sm">
+                  Example alert: “This notice may require action soon. Review
+                  the deadline before closing this case.”
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <h2 className="text-xl font-bold">Record protection</h2>
+
+                <p className="mt-3 text-sm leading-6 text-gray-600">
+                  Future versions can save upload history, OCR results, response
+                  drafts, timestamps, and communication records so users have a
+                  clearer timeline if a dispute happens later.
+                </p>
+
+                <div className="mt-4 grid gap-3 text-sm text-gray-700">
+                  <div className="rounded-xl bg-slate-50 p-3">
+                    Upload record
+                  </div>
+                  <div className="rounded-xl bg-slate-50 p-3">
+                    Response history
+                  </div>
+                  <div className="rounded-xl bg-slate-50 p-3">
+                    Deadline log
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-              <h2 className="text-xl font-bold">Future smart features</h2>
+              <h2 className="text-xl font-bold">Future smart workflow</h2>
 
-              <div className="mt-4 grid gap-4 md:grid-cols-3">
+              <div className="mt-4 grid gap-4 md:grid-cols-4">
                 <div className="rounded-xl border bg-slate-50 p-4">
-                  <p className="font-semibold">Deadline Alerts</p>
+                  <p className="font-semibold">OCR Review</p>
                   <p className="mt-2 text-sm text-gray-600">
-                    Important dates can stay visible until manually cleared.
+                    Scan uploaded documents for readable text.
                   </p>
                 </div>
 
                 <div className="rounded-xl border bg-slate-50 p-4">
-                  <p className="font-semibold">OCR Review</p>
+                  <p className="font-semibold">AI Summary</p>
                   <p className="mt-2 text-sm text-gray-600">
-                    Uploaded documents can be scanned for names, dates, and
-                    deadlines.
+                    Summarize names, dates, amounts, and warnings.
+                  </p>
+                </div>
+
+                <div className="rounded-xl border bg-slate-50 p-4">
+                  <p className="font-semibold">Persistent Alerts</p>
+                  <p className="mt-2 text-sm text-gray-600">
+                    Keep urgent reminders visible until cleared.
                   </p>
                 </div>
 
                 <div className="rounded-xl border bg-slate-50 p-4">
                   <p className="font-semibold">Quick Response</p>
                   <p className="mt-2 text-sm text-gray-600">
-                    Simple response drafts can be prepared for user approval.
+                    Prepare simple response drafts for user approval.
                   </p>
                 </div>
               </div>
+            </div>
+
+            <div className="mt-8 rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm leading-6 text-amber-900">
+              {disclaimer}
+            </div>
+
+            <div className="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm leading-6 text-gray-700">
+              Privacy note: users should avoid uploading unnecessary personal
+              information unless it is needed to understand the document. Future
+              versions should include secure login, saved cases, and access
+              controls before public launch.
             </div>
           </div>
         </section>
