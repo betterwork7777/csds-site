@@ -7,6 +7,7 @@ export default function DocumentsPage() {
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
+  const [ocrText, setOcrText] = useState("");
 
   async function handleUpload() {
     if (!file) {
@@ -16,6 +17,7 @@ export default function DocumentsPage() {
 
     setUploading(true);
     setMessage("");
+    setOcrText("");
 
     const filePath = `uploads/${Date.now()}-${file.name}`;
 
@@ -25,11 +27,27 @@ export default function DocumentsPage() {
 
     if (error) {
       setMessage(`Upload failed: ${error.message}`);
-    } else {
-      setMessage("Upload successful. OCR review will be connected next.");
-      setFile(null);
+      setUploading(false);
+      return;
     }
 
+    setMessage("Upload successful. Running OCR...");
+
+    const response = await fetch("/api/ocr", {
+      method: "POST",
+    });
+
+    const data = await response.json();
+
+    if (!response.ok || !data.success) {
+      setMessage(data.error || data.message || "OCR failed.");
+      setUploading(false);
+      return;
+    }
+
+    setOcrText(data.extractedText || "No text found.");
+    setMessage("OCR complete.");
+    setFile(null);
     setUploading(false);
   }
 
@@ -60,6 +78,7 @@ export default function DocumentsPage() {
 
             <input
               type="file"
+              accept=".pdf,.jpg,.jpeg,.png"
               className="mt-5 block w-full rounded-xl border bg-white p-3"
               onChange={(e) => setFile(e.target.files?.[0] ?? null)}
             />
@@ -76,7 +95,7 @@ export default function DocumentsPage() {
               disabled={uploading}
               className="mt-6 rounded-xl bg-slate-900 px-6 py-3 font-semibold text-white hover:bg-slate-800 disabled:opacity-60"
             >
-              {uploading ? "Uploading..." : "Upload Document"}
+              {uploading ? "Working..." : "Upload & Read Document"}
             </button>
 
             {message && (
@@ -85,6 +104,16 @@ export default function DocumentsPage() {
               </div>
             )}
           </div>
+
+          {ocrText && (
+            <div className="mt-8 rounded-2xl border bg-white p-6 shadow-sm">
+              <h2 className="text-xl font-bold">Extracted Text</h2>
+
+              <pre className="mt-4 max-h-96 overflow-auto whitespace-pre-wrap rounded-xl bg-slate-50 p-4 text-sm leading-6 text-gray-700">
+                {ocrText}
+              </pre>
+            </div>
+          )}
 
           <div className="mt-8 grid gap-5 md:grid-cols-3">
             <div className="rounded-2xl border p-5">
@@ -97,7 +126,7 @@ export default function DocumentsPage() {
             <div className="rounded-2xl border p-5">
               <h3 className="font-bold">Step 2</h3>
               <p className="mt-2 text-sm text-gray-600">
-                OCR will read the document text next.
+                OCR reads document text.
               </p>
             </div>
 
