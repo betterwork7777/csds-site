@@ -25,42 +25,36 @@ const colorStyles = {
     pageBg: "bg-blue-50",
     accentText: "text-blue-700",
     button: "bg-blue-700 hover:bg-blue-800",
-    ring: "ring-blue-100",
     soft: "bg-blue-50 border-blue-100",
   },
   emerald: {
     pageBg: "bg-emerald-50",
     accentText: "text-emerald-700",
     button: "bg-emerald-700 hover:bg-emerald-800",
-    ring: "ring-emerald-100",
     soft: "bg-emerald-50 border-emerald-100",
   },
   orange: {
     pageBg: "bg-orange-50",
     accentText: "text-orange-700",
     button: "bg-orange-700 hover:bg-orange-800",
-    ring: "ring-orange-100",
     soft: "bg-orange-50 border-orange-100",
   },
   rose: {
     pageBg: "bg-rose-50",
     accentText: "text-rose-700",
     button: "bg-rose-700 hover:bg-rose-800",
-    ring: "ring-rose-100",
     soft: "bg-rose-50 border-rose-100",
   },
   purple: {
     pageBg: "bg-purple-50",
     accentText: "text-purple-700",
     button: "bg-purple-700 hover:bg-purple-800",
-    ring: "ring-purple-100",
     soft: "bg-purple-50 border-purple-100",
   },
   slate: {
     pageBg: "bg-slate-100",
     accentText: "text-slate-700",
     button: "bg-slate-800 hover:bg-slate-900",
-    ring: "ring-slate-200",
     soft: "bg-slate-50 border-slate-200",
   },
 };
@@ -81,260 +75,184 @@ export default function ServicePage({
   const style = colorStyles[color];
 
   return (
-    <main className={`min-h-screen ${style.pageBg} px-6 py-16 text-gray-900`}>
-      <div className="mx-auto max-w-6xl">
-        <a href="/" className={`text-sm font-semibold ${style.accentText}`}>
+    <main className={`min-h-screen ${style.pageBg} px-6 py-14 text-gray-900`}>
+      <div className="mx-auto max-w-3xl">
+        <a href="/" className={`text-sm font-bold ${style.accentText}`}>
           ← Back to Home
         </a>
 
-        <section className="mt-6 overflow-hidden rounded-3xl bg-white shadow-xl ring-1 ring-black/5">
-          <div className={`border-b p-8 md:p-10 ${style.soft}`}>
-            <div className="flex flex-wrap items-center gap-3">
-              <span
-                className={`rounded-full bg-white px-4 py-2 text-sm font-bold shadow-sm ring-1 ${style.ring} ${style.accentText}`}
-              >
-                {label}
-              </span>
+        <section className="mt-6 rounded-3xl bg-white p-7 shadow-xl">
+          <div className="text-center">
+            <p
+              className={`mx-auto inline-block rounded-full px-4 py-2 text-sm font-bold ${style.soft} ${style.accentText}`}
+            >
+              {label}
+            </p>
 
-              <span className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-600 shadow-sm ring-1 ring-gray-100">
-                Document review
-              </span>
+            <h1 className="mt-5 text-4xl font-bold">{title}</h1>
 
-              <span className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-600 shadow-sm ring-1 ring-gray-100">
-                Deadline-ready
-              </span>
-            </div>
+            <p className="mx-auto mt-4 max-w-2xl text-lg leading-7 text-gray-600">
+              {description}
+            </p>
 
-            <div className="mt-8 grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:items-center">
-              <div>
-                <h1 className="max-w-4xl text-4xl font-bold tracking-tight md:text-5xl">
-                  {title}
-                </h1>
-
-                <p className="mt-5 max-w-3xl text-lg leading-8 text-gray-700">
-                  {description}
-                </p>
-
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <a
-                    href="/documents"
-                    className={`rounded-xl px-6 py-3 font-semibold text-white shadow-sm transition ${style.button}`}
-                  >
-                    {uploadText}
-                  </a>
-
-                  <a
-                    href="/"
-                    className="rounded-xl border border-gray-300 bg-white px-6 py-3 font-semibold text-gray-700 shadow-sm hover:bg-gray-50"
-                  >
-                    Review Other Services
-                  </a>
-                </div>
-              </div>
-
-              <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-gray-100">
-                <p className="text-sm font-bold text-gray-500">
-                  Case preparation preview
-                </p>
-
-                <div className="mt-4 space-y-3 text-sm text-gray-700">
-                  <div className="flex items-center justify-between rounded-xl bg-slate-50 p-3">
-                    <span>Document status</span>
-                    <span className={`font-bold ${style.accentText}`}>
-                      Ready
-                    </span>
-                  </div>
-
-                  <div className="flex items-center justify-between rounded-xl bg-slate-50 p-3">
-                    <span>Review type</span>
-                    <span className="font-bold">{reviewType}</span>
-                  </div>
-
-                  <div className="flex items-center justify-between rounded-xl bg-slate-50 p-3">
-                    <span>Future alerts</span>
-                    <span className="font-bold text-red-700">Planned</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <a
+              href="/documents"
+              className={`mt-7 inline-block rounded-xl px-7 py-4 text-lg font-bold text-white ${style.button}`}
+            >
+              {uploadText}
+            </a>
           </div>
 
-          <div className="p-8 md:p-10">
-            <div className="grid gap-5 md:grid-cols-3">
-              <div className="rounded-2xl border bg-white p-5 shadow-sm">
-                <p className="text-sm font-semibold text-gray-500">Focus</p>
-                <p className="mt-2 text-2xl font-bold">{focus}</p>
-              </div>
+          <div className="mt-10 space-y-5">
+            <div className="rounded-2xl border bg-slate-50 p-5">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-sm font-bold text-gray-500">
+                    What this is for
+                  </p>
+                  <h2 className="mt-1 text-2xl font-bold">{focus}</h2>
+                  <p className="mt-2 text-gray-600">{reviewType}</p>
+                </div>
 
-              <div className="rounded-2xl border bg-white p-5 shadow-sm">
-                <p className="text-sm font-semibold text-gray-500">
-                  Review Type
-                </p>
-                <p className="mt-2 text-2xl font-bold">{reviewType}</p>
-              </div>
-
-              <div className="rounded-2xl border bg-white p-5 shadow-sm">
-                <p className="text-sm font-semibold text-gray-500">Status</p>
-                <p className={`mt-2 text-2xl font-bold ${style.accentText}`}>
-                  {status}
-                </p>
+                <details className="relative">
+                  <summary className="flex h-9 w-9 cursor-pointer list-none items-center justify-center rounded-full bg-white text-sm font-bold shadow">
+                    ?
+                  </summary>
+                  <div className="absolute right-0 z-10 mt-3 w-64 rounded-2xl border bg-white p-4 text-sm leading-6 text-gray-700 shadow-xl">
+                    Use this page when you received an important notice, letter,
+                    bill, or paperwork and need help understanding what matters.
+                  </div>
+                </details>
               </div>
             </div>
 
-            <div className="mt-8 grid gap-6 lg:grid-cols-2">
-              <div className="rounded-2xl border bg-white p-6 shadow-sm">
-                <h2 className="text-xl font-bold">What this helps with</h2>
+            <div className="rounded-2xl border bg-white p-5 shadow-sm">
+              <div className="flex items-start justify-between gap-4">
+                <h2 className="text-2xl font-bold">Step 1: Pick your notice</h2>
 
-                <p className="mt-3 leading-7 text-gray-600">
-                  This page helps organize important details, identify missing
-                  information, highlight deadlines or warning language, and
-                  prepare the next self-help document step.
-                </p>
-
-                <div className="mt-5 rounded-xl bg-slate-50 p-4">
-                  <p className="text-sm font-bold text-gray-800">
-                    Good things to have ready
-                  </p>
-
-                  <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-gray-600">
-                    <li>Notice or letter date</li>
-                    <li>Deadline or due date</li>
-                    <li>Sender name, company, landlord, agency, or creditor</li>
-                    <li>Amount claimed, if money is involved</li>
-                    <li>Any response instructions listed on the document</li>
-                  </ul>
-                </div>
+                <details className="relative">
+                  <summary className="flex h-9 w-9 cursor-pointer list-none items-center justify-center rounded-full bg-slate-100 text-sm font-bold">
+                    ?
+                  </summary>
+                  <div className="absolute right-0 z-10 mt-3 w-64 rounded-2xl border bg-white p-4 text-sm leading-6 text-gray-700 shadow-xl">
+                    Choose the category that best matches the paper you received.
+                    It does not have to be perfect.
+                  </div>
+                </details>
               </div>
 
-              <div className="rounded-2xl border bg-white p-6 shadow-sm">
-                <h2 className="text-xl font-bold">Common documents</h2>
-
-                <ul className="mt-3 list-disc space-y-2 pl-6 text-gray-600">
-                  {documents.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-
-                <div className={`mt-5 rounded-xl border p-4 ${style.soft}`}>
-                  <p className={`text-sm font-bold ${style.accentText}`}>
-                    Upload guidance
-                  </p>
-                  <p className="mt-2 text-sm leading-6 text-gray-700">
-                    Clear photos, PDFs, screenshots, and scanned notices are the
-                    best documents to upload for review.
-                  </p>
-                </div>
-              </div>
+              <ul className="mt-4 space-y-2">
+                {documents.map((item) => (
+                  <li
+                    key={item}
+                    className="rounded-xl bg-slate-50 px-4 py-3 text-sm font-semibold text-gray-700"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <div className="mt-8 rounded-2xl bg-slate-50 p-6">
-              <h2 className="text-xl font-bold">How it works</h2>
+            <div className="rounded-2xl border bg-white p-5 shadow-sm">
+              <div className="flex items-start justify-between gap-4">
+                <h2 className="text-2xl font-bold">Step 2: Upload it</h2>
 
-              <div className="mt-5 grid gap-4 md:grid-cols-3">
+                <details className="relative">
+                  <summary className="flex h-9 w-9 cursor-pointer list-none items-center justify-center rounded-full bg-slate-100 text-sm font-bold">
+                    ?
+                  </summary>
+                  <div className="absolute right-0 z-10 mt-3 w-64 rounded-2xl border bg-white p-4 text-sm leading-6 text-gray-700 shadow-xl">
+                    Clear photos, screenshots, PDFs, and scanned documents work
+                    best.
+                  </div>
+                </details>
+              </div>
+
+              <p className="mt-3 leading-7 text-gray-600">
+                Upload the notice or document. The system will store it and prepare
+                it for review.
+              </p>
+
+              <a
+                href="/documents"
+                className={`mt-5 inline-block rounded-xl px-6 py-3 font-bold text-white ${style.button}`}
+              >
+                Upload Document
+              </a>
+            </div>
+
+            <div className="rounded-2xl border bg-white p-5 shadow-sm">
+              <div className="flex items-start justify-between gap-4">
+                <h2 className="text-2xl font-bold">Step 3: See what matters</h2>
+
+                <details className="relative">
+                  <summary className="flex h-9 w-9 cursor-pointer list-none items-center justify-center rounded-full bg-slate-100 text-sm font-bold">
+                    ?
+                  </summary>
+                  <div className="absolute right-0 z-10 mt-3 w-64 rounded-2xl border bg-white p-4 text-sm leading-6 text-gray-700 shadow-xl">
+                    Future OCR and AI review will look for names, dates,
+                    deadlines, amounts, and warning language.
+                  </div>
+                </details>
+              </div>
+
+              <div className="mt-4 space-y-3">
                 {steps.map((step, index) => (
                   <div
                     key={step}
-                    className="rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-100"
+                    className="rounded-xl bg-slate-50 px-4 py-3 text-sm text-gray-700"
                   >
-                    <div
-                      className={`mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-white text-sm font-bold shadow-sm ring-1 ${style.ring} ${style.accentText}`}
-                    >
-                      {index + 1}
-                    </div>
-
-                    <p className="text-sm leading-6 text-gray-700">{step}</p>
+                    <strong>{index + 1}.</strong> {step}
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="mt-8 grid gap-6 lg:grid-cols-2">
-              <div className="rounded-2xl border border-red-100 bg-red-50 p-6">
-                <h2 className="text-xl font-bold text-red-900">
-                  Deadline & alert preview
+            <div className="rounded-2xl border border-red-100 bg-red-50 p-5">
+              <div className="flex items-start justify-between gap-4">
+                <h2 className="text-2xl font-bold text-red-900">
+                  Step 4: Do not miss deadlines
                 </h2>
 
-                <p className="mt-3 text-sm leading-6 text-red-800">
-                  Future versions can keep important dates visible until the
-                  user manually clears them. This is designed for deadlines,
-                  notice dates, response dates, follow-ups, court dates, and
-                  agency reminders.
-                </p>
-
-                <div className="mt-4 rounded-xl bg-white p-4 text-sm text-red-900 shadow-sm">
-                  Example alert: “This notice may require action soon. Review
-                  the deadline before closing this case.”
-                </div>
+                <details className="relative">
+                  <summary className="flex h-9 w-9 cursor-pointer list-none items-center justify-center rounded-full bg-white text-sm font-bold text-red-800 shadow">
+                    ?
+                  </summary>
+                  <div className="absolute right-0 z-10 mt-3 w-64 rounded-2xl border bg-white p-4 text-sm leading-6 text-gray-700 shadow-xl">
+                    Future alerts can stay visible until the user clears them.
+                  </div>
+                </details>
               </div>
 
-              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                <h2 className="text-xl font-bold">Record protection</h2>
+              <p className="mt-3 text-sm leading-6 text-red-800">
+                Future versions will help track important dates, response
+                deadlines, follow-ups, and reminders.
+              </p>
+            </div>
 
-                <p className="mt-3 text-sm leading-6 text-gray-600">
-                  Future versions can save upload history, OCR results, response
-                  drafts, timestamps, and communication records so users have a
-                  clearer timeline if a dispute happens later.
-                </p>
+            <div className="rounded-2xl border bg-slate-50 p-5">
+              <h2 className="text-xl font-bold">What to expect</h2>
 
-                <div className="mt-4 grid gap-3 text-sm text-gray-700">
-                  <div className="rounded-xl bg-slate-50 p-3">
-                    Upload record
-                  </div>
-                  <div className="rounded-xl bg-slate-50 p-3">
-                    Response history
-                  </div>
-                  <div className="rounded-xl bg-slate-50 p-3">
-                    Deadline log
-                  </div>
+              <div className="mt-4 space-y-3 text-sm text-gray-700">
+                <div className="rounded-xl bg-white p-3">
+                  Upload record saved
+                </div>
+                <div className="rounded-xl bg-white p-3">
+                  OCR review coming next
+                </div>
+                <div className="rounded-xl bg-white p-3">
+                  Summary and alerts planned
                 </div>
               </div>
             </div>
 
-            <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-              <h2 className="text-xl font-bold">Future smart workflow</h2>
-
-              <div className="mt-5 grid gap-4 md:grid-cols-4">
-                <div className="rounded-xl border bg-slate-50 p-4">
-                  <p className="font-semibold">OCR Review</p>
-                  <p className="mt-2 text-sm text-gray-600">
-                    Scan uploaded documents for readable text.
-                  </p>
-                </div>
-
-                <div className="rounded-xl border bg-slate-50 p-4">
-                  <p className="font-semibold">AI Summary</p>
-                  <p className="mt-2 text-sm text-gray-600">
-                    Summarize names, dates, amounts, and warnings.
-                  </p>
-                </div>
-
-                <div className="rounded-xl border bg-slate-50 p-4">
-                  <p className="font-semibold">Persistent Alerts</p>
-                  <p className="mt-2 text-sm text-gray-600">
-                    Keep urgent reminders visible until cleared.
-                  </p>
-                </div>
-
-                <div className="rounded-xl border bg-slate-50 p-4">
-                  <p className="font-semibold">Quick Response</p>
-                  <p className="mt-2 text-sm text-gray-600">
-                    Prepare simple response drafts for user approval.
-                  </p>
-                </div>
-              </div>
+            <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm leading-6 text-amber-900">
+              {disclaimer}
             </div>
 
-            <div className="mt-8 grid gap-6 lg:grid-cols-2">
-              <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm leading-6 text-amber-900">
-                {disclaimer}
-              </div>
-
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm leading-6 text-gray-700">
-                <strong>Privacy note:</strong> Users should avoid uploading
-                unnecessary personal information unless it is needed to
-                understand the document. Future versions should include secure
-                login, saved cases, and access controls before public launch.
-              </div>
+            <div className="rounded-2xl border bg-white p-5 text-sm leading-6 text-gray-600">
+              <strong>Status:</strong> {status}. This platform provides
+              educational self-help information only.
             </div>
           </div>
         </section>
