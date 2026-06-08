@@ -33,9 +33,13 @@ export default function DocumentsPage() {
 
     setMessage("Upload successful. Running OCR...");
 
-    const response = await fetch("/api/ocr", {
-      method: "POST",
-    });
+   const response = await fetch("/api/ocr", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ filePath }),
+});
 
     const data = await response.json();
 
