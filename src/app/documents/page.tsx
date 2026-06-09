@@ -19,7 +19,7 @@ export default function DocumentsPage() {
     setMessage("");
     setOcrText("");
 
-    const filePath = `uploads/${Date.now()}-${file.name}`;
+    const filePath = `${Date.now()}-${file.name}`;
 
     const { error } = await supabase.storage
       .from("debt-documents")
