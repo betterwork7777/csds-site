@@ -20,35 +20,18 @@ export async function POST(request: Request) {
 
     if (!filePath) {
       return NextResponse.json(
-        {
-          success: false,
-          message: "Missing filePath",
-        },
+        { success: false, message: "Missing filePath" },
         { status: 400 }
       );
     }
 
-    const { data, error } = await supabase.storage
+    const { data } = supabase.storage
       .from("debt-documents")
-      .download(filePath);
+      .getPublicUrl(filePath);
 
-    if (error || !data) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "Could not download file from Supabase",
-          error: error?.message || "No file data returned",
-        },
-        { status: 500 }
-      );
-    }
+    const publicUrl = data.publicUrl;
 
-    const arrayBuffer = await data.arrayBuffer();
-
-    console.log("OCR file path:", filePath);
-    console.log("OCR file size:", arrayBuffer.byteLength);
-
-    const base64File = Buffer.from(arrayBuffer).toString("base64");
+    console.log("OCR public URL:", publicUrl);
 
     const credentials = JSON.parse(
       process.env.GOOGLE_VISION_CREDENTIALS || "{}"
@@ -60,21 +43,20 @@ export async function POST(request: Request) {
 
     const [result] = await client.textDetection({
       image: {
-        content: base64File,
+        source: {
+          imageUri: publicUrl,
+        },
       },
     });
 
     const detections = result.textAnnotations;
     const text = detections?.[0]?.description || "No text found";
 
-    console.log("OCR text length:", text.length);
-    console.log("OCR text preview:", text.slice(0, 200));
-
     return NextResponse.json({
       success: true,
       extractedText: text,
       filePath,
-      fileSize: arrayBuffer.byteLength,
+      publicUrl,
     });
   } catch (error) {
     return NextResponse.json(
