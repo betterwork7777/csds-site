@@ -1,15 +1,50 @@
 import { NextResponse } from "next/server";
 import vision from "@google-cloud/vision";
+import { supabase } from "../../lib/supabase";
 
 export async function GET() {
-  return Response.json({
+  return NextResponse.json({
     success: true,
     message: "OCR route is live",
   });
 }
 
-export async function POST() {
+export async function POST(request: Request) {
   try {
+    const { filePath } = await request.json();
+
+    if (!filePath) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Missing filePath",
+        },
+        { status: 400 }
+      );
+    }
+
+    const { data, error } = await supabase.storage
+      .from("debt-documents")
+      .download(filePath);
+
+    if (error || !data) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Could not download file from Supabase",
+          error: error?.message || "No file data returned",
+        },
+        { status: 500 }
+      );
+    }
+
+    const arrayBuffer = await data.arrayBuffer();
+
+    console.log("OCR file path:", filePath);
+    console.log("OCR file size:", arrayBuffer.byteLength);
+
+    const base64File = Buffer.from(arrayBuffer).toString("base64");
+
     const credentials = JSON.parse(
       process.env.GOOGLE_VISION_CREDENTIALS || "{}"
     );
@@ -20,19 +55,21 @@ export async function POST() {
 
     const [result] = await client.textDetection({
       image: {
-        source: {
-          imageUri:
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Declaration_of_Independence_%281819%29.jpg/800px-Declaration_of_Independence_%281819%29.jpg",
-        },
+        content: base64File,
       },
     });
 
     const detections = result.textAnnotations;
     const text = detections?.[0]?.description || "No text found";
 
+    console.log("OCR text length:", text.length);
+    console.log("OCR text preview:", text.slice(0, 200));
+
     return NextResponse.json({
       success: true,
       extractedText: text,
+      filePath,
+      fileSize: arrayBuffer.byteLength,
     });
   } catch (error) {
     return NextResponse.json(
