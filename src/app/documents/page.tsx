@@ -8,6 +8,7 @@ export default function DocumentsPage() {
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
   const [ocrText, setOcrText] = useState("");
+  const [summary, setSummary] = useState("");
 
   async function handleUpload() {
     if (!file) {
@@ -18,6 +19,7 @@ export default function DocumentsPage() {
     setUploading(true);
     setMessage("");
     setOcrText("");
+    setSummary("");
 
     const filePath = `${Date.now()}-${file.name}`;
 
@@ -60,8 +62,27 @@ const response = await fetch("/api/ocr", {
       return;
     }
 
-    setOcrText(data.extractedText || "No text found.");
-    setMessage("OCR complete.");
+    const extractedText = data.extractedText || "No text found.";
+
+setOcrText(extractedText);
+
+const summaryResponse = await fetch("/api/summarize", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    text: extractedText,
+  }),
+});
+
+const summaryData = await summaryResponse.json();
+
+if (summaryData.success) {
+  setSummary(summaryData.summary);
+}
+
+setMessage("OCR complete.");
     setFile(null);
     setUploading(false);
   }
@@ -119,7 +140,15 @@ const response = await fetch("/api/ocr", {
               </div>
             )}
           </div>
+{summary && (
+  <div className="mt-8 rounded-2xl border bg-white p-6 shadow-sm">
+    <h2 className="text-xl font-bold">Document Summary</h2>
 
+    <pre className="mt-4 whitespace-pre-wrap text-sm text-gray-700">
+      {summary}
+    </pre>
+  </div>
+)}
           {ocrText && (
             <div className="mt-8 rounded-2xl border bg-white p-6 shadow-sm">
               <h2 className="text-xl font-bold">Extracted Text</h2>
