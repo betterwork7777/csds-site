@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 import vision from "@google-cloud/vision";
-import { supabase } from "../../lib/supabase";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  "https://brjxclxlptwjzawevzwx.supabase.co",
+  "sb_publishable_modA-En_NPTxFcUOHSjVdA_mzK2-Dpy"
+);
 
 export async function GET() {
   return NextResponse.json({
