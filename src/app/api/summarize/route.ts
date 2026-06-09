@@ -15,6 +15,22 @@ export async function POST(request: Request) {
     }
 
     const lowerText = text.toLowerCase();
+    const amountMatch =
+  text.match(/\$\s?\d[\d,]*(\.\d{2})?/) ||
+  text.match(/\d[\d,]*(\.\d{2})?\s*dollars?/i);
+
+const amountFound = amountMatch
+  ? amountMatch[0]
+  : "Not detected";
+
+const dateMatch =
+  text.match(
+    /\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\s+\d{1,2},?\s+\d{4}\b/i
+  );
+
+const dateFound = dateMatch
+  ? dateMatch[0]
+  : "Not detected";
 
     let category = "General Document";
 
@@ -45,17 +61,20 @@ export async function POST(request: Request) {
       category = "Government & Benefits";
     }
 
-    const summary = `
+   const summary = `
 Category: ${category}
+
+Amount Found:
+${amountFound}
+
+Possible Date:
+${dateFound}
 
 Summary:
 This document was successfully processed.
 
-Extracted Text Length:
-${text.length} characters
-
 Recommended Next Step:
-Review the extracted text and look for important dates, deadlines, names, amounts, sender information, and response instructions.
+Review the extracted text and verify any dates, deadlines, balances, names, and instructions.
 `;
 
     return NextResponse.json({
