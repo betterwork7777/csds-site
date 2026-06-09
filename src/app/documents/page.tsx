@@ -35,12 +35,21 @@ export default function DocumentsPage() {
 
 await new Promise((resolve) => setTimeout(resolve, 1000));
 
+const fileBase64 = await new Promise<string>((resolve, reject) => {
+  const reader = new FileReader();
+
+  reader.onload = () => resolve(reader.result as string);
+  reader.onerror = reject;
+
+  reader.readAsDataURL(file);
+});
+
 const response = await fetch("/api/ocr", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
   },
-  body: JSON.stringify({ filePath }),
+  body: JSON.stringify({ fileBase64 }),
 });
 
     const data = await response.json();
