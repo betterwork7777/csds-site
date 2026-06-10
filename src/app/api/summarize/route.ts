@@ -54,6 +54,20 @@ const websiteMatch = text.match(
 const websiteFound = websiteMatch
   ? websiteMatch[0]
   : "Not detected";
+    const referenceMatch = text.match(
+  /\b(?:account|acct|account number|case|case number|reference|reference number|notice number|client id)[\s:#-]*([A-Z0-9-]{4,})/i
+);
+
+const referenceFound = referenceMatch
+  ? referenceMatch[1]
+  : "Not detected";
+    const deadlineMatch = text.match(
+  /\b(?:due date|deadline|respond by|submit by|pay by)[\s:]*([A-Za-z]+\s+\d{1,2},?\s+\d{4})/i
+);
+
+const deadlineFound = deadlineMatch
+  ? deadlineMatch[1]
+  : "Not detected";
 
     let category = "General Document";
 
@@ -93,6 +107,9 @@ ${amountFound}
 Possible Date:
 ${dateFound}
 
+Deadline / Due Date:
+${deadlineFound}
+
 Phone Found:
 ${phoneFound}
 
@@ -101,6 +118,9 @@ ${emailFound}
 
 Website Found:
 ${websiteFound}
+
+Reference Found:
+${referenceFound}
 
 Summary:
 This document was successfully processed.
