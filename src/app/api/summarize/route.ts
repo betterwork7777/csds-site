@@ -68,6 +68,17 @@ const referenceFound = referenceMatch
 const deadlineFound = deadlineMatch
   ? deadlineMatch[1]
   : "Not detected";
+    const lines = text
+  .split("\n")
+  .map((line: string) => line.trim())
+  .filter((line: string) => line.length > 0);
+
+const possibleSender =
+  lines.find((line: string) =>
+    /(inc\.|llc|corp\.|corporation|company|department|agency|office|apartments|management|collections|services)/i.test(
+      line
+    )
+  ) || "Not detected";
 
     let category = "General Document";
 
@@ -100,6 +111,9 @@ const deadlineFound = deadlineMatch
 
    const summary = `
 Category: ${category}
+
+Sender:
+${possibleSender}
 
 Amount Found:
 ${amountFound}
