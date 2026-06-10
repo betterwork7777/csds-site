@@ -31,6 +31,29 @@ const dateMatch =
 const dateFound = dateMatch
   ? dateMatch[0]
   : "Not detected";
+    const phoneMatch = text.match(
+  /\b(?:\+?1[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}\b/
+);
+
+const phoneFound = phoneMatch
+  ? phoneMatch[0]
+  : "Not detected";
+
+const emailMatch = text.match(
+  /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i
+);
+
+const emailFound = emailMatch
+  ? emailMatch[0]
+  : "Not detected";
+
+const websiteMatch = text.match(
+  /\b(?:https?:\/\/)?(?:www\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,}\b/
+);
+
+const websiteFound = websiteMatch
+  ? websiteMatch[0]
+  : "Not detected";
 
     let category = "General Document";
 
@@ -70,6 +93,14 @@ ${amountFound}
 Possible Date:
 ${dateFound}
 
+Phone Found:
+${phoneFound}
+
+Email Found:
+${emailFound}
+
+Website Found:
+${websiteFound}
 Summary:
 This document was successfully processed.
 
