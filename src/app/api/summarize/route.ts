@@ -47,12 +47,12 @@ const emailFound = emailMatch
   ? emailMatch[0]
   : "Not detected";
 
-const websiteMatch = text.match(
-  /\b(?:https?:\/\/)?(?:www\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,}\b/
+const websiteMatches = text.match(
+  /\b(?:https?:\/\/)?(?:www\.)[a-zA-Z0-9-]+\.[a-zA-Z]{2,}\b/g
 );
 
-const websiteFound = websiteMatch
-  ? websiteMatch[0]
+const websiteFound = websiteMatches
+  ? websiteMatches[websiteMatches.length - 1]
   : "Not detected";
     const referenceMatch = text.match(
   /\b(?:account|acct|account number|case|case number|reference|reference number|notice number|client id)[\s:#-]*([A-Z0-9-]{4,})/i
