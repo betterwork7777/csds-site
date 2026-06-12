@@ -133,6 +133,23 @@ if (category === "Government & Benefits") {
   recommendedNextStep =
     "Review eligibility requirements, deadlines, notices, and any requested documents.";
 }
+   let documentSummary =
+  "This document was successfully processed.";
+
+if (category === "Debt & Collections") {
+  documentSummary =
+    `This appears to be a collection notice from ${possibleSender}. The document references account ${referenceFound}, reports a balance of ${amountFound}, and includes contact information for the creditor.`;
+}
+
+if (category === "Housing & Rent") {
+  documentSummary =
+    `This appears to be a housing or rental document. Review all notices, dates, and instructions carefully.`;
+}
+
+if (category === "Government & Benefits") {
+  documentSummary =
+    `This appears to be a government or benefits-related notice. Review any eligibility requirements, requested documents, and deadlines.`;
+} 
    const summary = `
 Category: ${category}
 
