@@ -178,7 +178,7 @@ Reference Found:
 ${referenceFound}
 
 Summary:
-This document was successfully processed.
+${documentSummary}
 
 Recommended Next Step:
 ${recommendedNextStep}
