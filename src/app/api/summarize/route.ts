@@ -77,12 +77,16 @@ const deadlineFound = deadlineMatch
   .map((line: string) => line.trim())
   .filter((line: string) => line.length > 0);
 
-const possibleSender =
-  lines.find((line: string) =>
-    /(inc\.|llc|corp\.|corporation|company|department|agency|office|apartments|management|collections|services)/i.test(
+const senderCandidates = lines.filter(
+  (line: string) =>
+    /(inc\.|llc|corp\.|corporation|department|agency|office|management|accounts|receivable)/i.test(
       line
-    )
-  ) || "Not detected";
+    ) &&
+    !line.toLowerCase().includes("your contact information")
+);
+
+const possibleSender =
+  senderCandidates[senderCandidates.length - 1] || "Not detected";
 
     let category = "General Document";
 
