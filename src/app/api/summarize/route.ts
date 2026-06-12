@@ -55,7 +55,7 @@ const websiteFound = websiteMatches
   ? websiteMatches[websiteMatches.length - 1]
   : "Not detected";
     const referenceMatch = text.match(
-  /\b(?:account|acct|account number|case|case number|reference|reference number|notice number|client id)[\s:#-]*([A-Z0-9-]{4,})/i
+  /\b(?:account|acct|account number|case|case number|reference|reference number|notice number|client id)[^A-Z0-9]*([A-Z0-9]{4,})/i
 );
 
 const referenceFound = referenceMatch
