@@ -54,12 +54,12 @@ const websiteMatches = text.match(
 const websiteFound = websiteMatches
   ? websiteMatches[websiteMatches.length - 1]
   : "Not detected";
-    const referenceMatch = text.match(
-  /\b(?:account|acct|account number|case|case number|reference|reference number|notice number|client id)[^A-Z0-9]*([A-Z0-9]{4,})/i
+    const referenceNumberMatch = text.match(
+  /\b\d{4,}\b/
 );
 
-const referenceFound = referenceMatch
-  ? referenceMatch[1]
+const referenceFound = referenceNumberMatch
+  ? referenceNumberMatch[0]
   : "Not detected";
     const deadlineMatch = text.match(
   /\b(?:due date|deadline|respond by|submit by|pay by)[\s:]*([A-Za-z]+\s+\d{1,2},?\s+\d{4})/i
