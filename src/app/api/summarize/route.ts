@@ -116,7 +116,23 @@ const possibleSender =
     ) {
       category = "Government & Benefits";
     }
+let recommendedNextStep =
+  "Review the extracted text and verify any dates, deadlines, balances, names, and instructions.";
 
+if (category === "Debt & Collections") {
+  recommendedNextStep =
+    "Verify the balance, account number, and creditor information. Consider requesting debt validation if appropriate.";
+}
+
+if (category === "Housing & Rent") {
+  recommendedNextStep =
+    "Review any deadlines, notices, lease terms, and landlord instructions carefully.";
+}
+
+if (category === "Government & Benefits") {
+  recommendedNextStep =
+    "Review eligibility requirements, deadlines, notices, and any requested documents.";
+}
    const summary = `
 Category: ${category}
 
@@ -148,9 +164,8 @@ Summary:
 This document was successfully processed.
 
 Recommended Next Step:
-Review the extracted text and verify any dates, deadlines, balances, names, and instructions.
+${recommendedNextStep}
 `;
-
     return NextResponse.json({
       success: true,
       summary,
