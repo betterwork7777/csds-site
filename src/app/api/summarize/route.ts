@@ -136,7 +136,7 @@ export async function POST(request: Request) {
 
     try {
       const aiResponse = await openai.responses.create({
-        model: "gpt-5.5",
+        model: "gpt-5",
         instructions:
           "You are helping summarize consumer documents for a public-service document assistant. Be clear, practical, and cautious. Do not give legal advice. Explain what the document appears to be, what it asks for, and what the user should review.",
         input: `
