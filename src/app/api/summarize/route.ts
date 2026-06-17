@@ -112,7 +112,53 @@ export async function POST(request: Request) {
     ) {
       category = "Government & Benefits";
     }
+let riskLevel = "Low";
+let documentStatus = "Needs Review";
 
+let suggestedActions = [
+  "Review the document carefully"
+];
+
+if (category === "Debt & Collections") {
+  riskLevel = "Medium";
+  documentStatus = "Review balance and account details";
+
+  suggestedActions = [
+    "Verify the debt amount",
+    "Request debt validation",
+    "Contact the creditor",
+    "Review payment options"
+  ];
+}
+
+if (category === "Housing & Rent") {
+  riskLevel = "High";
+  documentStatus = "Review deadlines immediately";
+
+  suggestedActions = [
+    "Review the notice immediately",
+    "Verify lease information",
+    "Gather supporting documents",
+    "Respond before any deadline"
+  ];
+}
+
+if (category === "Government & Benefits") {
+  riskLevel = "Medium";
+  documentStatus = "Review requested documents and deadlines";
+
+  suggestedActions = [
+    "Review eligibility requirements",
+    "Gather requested documents",
+    "Submit documents before deadlines",
+    "Monitor agency communications"
+  ];
+}
+
+if (deadlineFound !== "Not detected") {
+  riskLevel = "High";
+  documentStatus = "Deadline or due date detected";
+}
     let recommendedNextStep =
       "Review the extracted text and verify any dates, deadlines, balances, names, and instructions.";
 
@@ -174,6 +220,15 @@ ${dateFound}
 
 Deadline / Due Date:
 ${deadlineFound}
+
+Risk Level:
+${riskLevel}
+
+Status:
+${documentStatus}
+
+Suggested Actions:
+• ${suggestedActions.join("\n• ")}
 
 Phone Found:
 ${phoneFound}
