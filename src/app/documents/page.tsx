@@ -113,12 +113,12 @@ setMessage("OCR complete.");
             <h2 className="text-xl font-bold">Upload a document</h2>
 
             <input
-              type="file"
-              accept=".pdf,.jpg,.jpeg,.png"
-              className="mt-5 block w-full rounded-xl border bg-white p-3"
-              onChange={(e) => setFile(e.target.files?.[0] ?? null)}
-            />
-
+  type="file"
+  accept="image/*,.pdf"
+  capture="environment"
+  className="mt-5 block w-full rounded-xl border bg-white p-3"
+  onChange={(e) => setFile(e.target.files?.[0] ?? null)}
+/>
             {file && (
               <p className="mt-3 text-sm text-gray-600">
                 Selected file: <strong>{file.name}</strong>
