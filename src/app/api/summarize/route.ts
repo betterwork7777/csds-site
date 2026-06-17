@@ -108,12 +108,13 @@ export async function POST(request: Request) {
       lowerText.includes("abd") ||
       lowerText.includes("medicaid") ||
       lowerText.includes("benefits") ||
-      lowerText.includes("eligibility")
-        ) {
+           lowerText.includes("eligibility")
+    ) {
       category = "Government & Benefits";
     }
 
 let documentMatch = "Good Match";
+let analysisWarning = "No major document mismatch detected.";
 
 if (
   category === "Debt & Collections" &&
@@ -122,6 +123,8 @@ if (
   possibleSender === "Not detected"
 ) {
   documentMatch = "Low Confidence Match";
+  analysisWarning =
+    "⚠ Analysis Warning: This document may not match the selected Debt & Collections category. The system could not find enough debt collection information such as a balance, account/reference number, creditor, or collection sender. Results may be incomplete or inaccurate. Please verify that the correct document was uploaded.";
 }
     
 let riskLevel = "Low";
@@ -223,6 +226,9 @@ Category: ${category}
 
 Document Match:
 ${documentMatch}
+
+Analysis Warning:
+${analysisWarning}
 
 Sender:
 ${possibleSender}
