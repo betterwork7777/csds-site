@@ -109,9 +109,21 @@ export async function POST(request: Request) {
       lowerText.includes("medicaid") ||
       lowerText.includes("benefits") ||
       lowerText.includes("eligibility")
-    ) {
+        ) {
       category = "Government & Benefits";
     }
+
+let documentMatch = "Good Match";
+
+if (
+  category === "Debt & Collections" &&
+  amountFound === "Not detected" &&
+  referenceFound === "Not detected" &&
+  possibleSender === "Not detected"
+) {
+  documentMatch = "Low Confidence Match";
+}
+    
 let riskLevel = "Low";
 let documentStatus = "Needs Review";
 
@@ -208,6 +220,9 @@ ${text}
 
     const summary = `
 Category: ${category}
+
+Document Match:
+${documentMatch}
 
 Sender:
 ${possibleSender}
