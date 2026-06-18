@@ -86,32 +86,41 @@ export async function POST(request: Request) {
 
     let category = "General Document";
 
-    if (
-      lowerText.includes("collection") ||
-      lowerText.includes("debt") ||
-      lowerText.includes("creditor") ||
-      lowerText.includes("balance due") ||
-      lowerText.includes("payment demand")
-    ) {
-      category = "Debt & Collections";
-    } else if (
-      lowerText.includes("rent") ||
-      lowerText.includes("landlord") ||
-      lowerText.includes("eviction") ||
-      lowerText.includes("lease") ||
-      lowerText.includes("tenant")
-    ) {
-      category = "Housing & Rent";
-    } else if (
-      lowerText.includes("dshs") ||
-      lowerText.includes("snap") ||
-      lowerText.includes("abd") ||
-      lowerText.includes("medicaid") ||
-      lowerText.includes("benefits") ||
-           lowerText.includes("eligibility")
-    ) {
-      category = "Government & Benefits";
-    }
+if (
+  lowerText.includes("form 1040") ||
+  lowerText.includes("irs") ||
+  lowerText.includes("tax return") ||
+  lowerText.includes("taxable income") ||
+  lowerText.includes("refund") ||
+  lowerText.includes("earned income credit")
+) {
+  category = "Tax Document";
+} else if (
+  lowerText.includes("collection") ||
+  lowerText.includes("debt") ||
+  lowerText.includes("creditor") ||
+  lowerText.includes("balance due") ||
+  lowerText.includes("payment demand")
+) {
+  category = "Debt & Collections";
+} else if (
+  lowerText.includes("rent") ||
+  lowerText.includes("landlord") ||
+  lowerText.includes("eviction") ||
+  lowerText.includes("lease") ||
+  lowerText.includes("tenant")
+) {
+  category = "Housing & Rent";
+} else if (
+  lowerText.includes("dshs") ||
+  lowerText.includes("snap") ||
+  lowerText.includes("abd") ||
+  lowerText.includes("medicaid") ||
+  lowerText.includes("benefits") ||
+  lowerText.includes("eligibility")
+) {
+  category = "Government & Benefits";
+}
 
 let documentMatch = "Good Match";
 let analysisWarning = "No major document mismatch detected.";
@@ -133,7 +142,20 @@ let documentStatus = "Needs Review";
 let suggestedActions = [
   "Review the document carefully"
 ];
+if (category === "Tax Document") {
+  documentMatch = "Wrong Document Type";
+  analysisWarning =
+    "⚠ Analysis Warning: This appears to be a tax document, not a debt collection notice. This document cannot be properly analyzed under Debt & Collections. Please upload a debt collection letter, billing notice, creditor notice, or collection agency letter for this category.";
 
+  riskLevel = "Unknown";
+  documentStatus = "Wrong document type selected";
+
+  suggestedActions = [
+    "Confirm you uploaded the correct document",
+    "Use a tax-related category if available",
+    "Upload a debt collection notice for Debt & Collections analysis"
+  ];
+}
 if (category === "Debt & Collections") {
   riskLevel = "Medium";
   documentStatus = "Review balance and account details";
