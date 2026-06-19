@@ -92,8 +92,14 @@ if (
   lowerText.includes("tax return") ||
   lowerText.includes("taxable income") ||
   lowerText.includes("refund") ||
-  lowerText.includes("earned income credit")
-) {
+  lowerText.includes("earned income credit") ||
+  lowerText.includes("property tax statement") ||
+  lowerText.includes("property taxes") ||
+  lowerText.includes("tax payment options") ||
+  lowerText.includes("tax billing questions") ||
+  lowerText.includes("tax department") ||
+  lowerText.includes("taxes & lien dates")
+)  {
   category = "Tax Document";
 } else if (
   lowerText.includes("collection") ||
