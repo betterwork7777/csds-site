@@ -100,7 +100,7 @@ if (
   lowerText.includes("tax department") ||
   lowerText.includes("taxes & lien dates")
 )  {
-  category = "Tax Document";
+  category = "Unsupported Document";
 } else if (
   lowerText.includes("collection") ||
   lowerText.includes("debt") ||
@@ -148,19 +148,19 @@ let documentStatus = "Needs Review";
 let suggestedActions = [
   "Review the document carefully"
 ];
-if (category === "Tax Document") {
+if (category === "Unsupported Document") {
   documentMatch = "Wrong Document Type";
   analysisWarning =
-    "⚠ Analysis Warning: This appears to be a tax document, not a debt collection notice. This document cannot be properly analyzed under Debt & Collections. Please upload a debt collection letter, billing notice, creditor notice, or collection agency letter for this category.";
+  "⚠ Wrong Document Type: This appears to be a tax-related document. This platform currently analyzes Debt & Collections, Housing & Rent, and Government & Benefits documents. Please upload one of those supported document types for a more accurate analysis.";
 
   riskLevel = "Unknown";
   documentStatus = "Wrong document type selected";
 
   suggestedActions = [
-    "Confirm you uploaded the correct document",
-    "Use a tax-related category if available",
-    "Upload a debt collection notice for Debt & Collections analysis"
-  ];
+  "Confirm you uploaded the correct document",
+  "Upload a Debt, Housing, or Benefits document",
+  "Use this OCR text only as a basic extracted-text reference"
+];
 }
 if (category === "Debt & Collections") {
   riskLevel = "Medium";
