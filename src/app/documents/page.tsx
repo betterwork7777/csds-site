@@ -154,9 +154,11 @@ setMessage("OCR complete.");
       </p>
     </div>
 
-    <pre className="whitespace-pre-wrap rounded-2xl bg-white p-5 text-sm leading-7 text-gray-800 shadow-sm">
-      {summary}
-    </pre>
+    <div className="rounded-2xl bg-white p-5 shadow-sm">
+  <pre className="whitespace-pre-wrap rounded-2xl bg-yellow-50 p-5 text-sm leading-7 text-gray-800">
+    {summary}
+  </pre>
+</div>
   </div>
 )}
           {ocrText && (
