@@ -141,10 +141,20 @@ setMessage("OCR complete.");
             )}
           </div>
 {summary && (
-  <div className="mt-8 rounded-2xl border bg-white p-6 shadow-sm">
-    <h2 className="text-xl font-bold">Document Summary</h2>
+  <div className="mt-8 rounded-3xl border border-blue-200 bg-blue-50 p-6 shadow-md">
+    <div className="mb-4 rounded-2xl bg-white p-4 shadow-sm">
+      <p className="text-sm font-bold uppercase tracking-wide text-blue-700">
+        AI Document Explanation
+      </p>
+      <h2 className="mt-2 text-2xl font-bold text-slate-900">
+        Here’s what this document appears to mean
+      </h2>
+      <p className="mt-2 text-sm text-slate-600">
+        Review this explanation carefully. It is meant to help you understand the document, not replace professional advice.
+      </p>
+    </div>
 
-    <pre className="mt-4 whitespace-pre-wrap text-sm text-gray-700">
+    <pre className="whitespace-pre-wrap rounded-2xl bg-white p-5 text-sm leading-7 text-gray-800 shadow-sm">
       {summary}
     </pre>
   </div>
