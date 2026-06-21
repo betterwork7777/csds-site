@@ -141,24 +141,68 @@ setMessage("OCR complete.");
             )}
           </div>
 {summary && (
-  <div className="mt-8 rounded-3xl border border-blue-200 bg-blue-50 p-6 shadow-md">
-    <div className="mb-4 rounded-2xl bg-white p-4 shadow-sm">
-      <p className="text-sm font-bold uppercase tracking-wide text-blue-700">
-        AI Document Explanation
+  <div className="mt-8 rounded-3xl border border-emerald-200 bg-gradient-to-br from-emerald-50 via-yellow-50 to-blue-50 p-6 shadow-xl">
+    <div className="rounded-2xl bg-white p-5 shadow-sm">
+      <p className="text-sm font-bold uppercase tracking-wide text-emerald-700">
+        Document Analysis Complete
       </p>
-      <h2 className="mt-2 text-2xl font-bold text-slate-900">
-        Here’s what this document appears to mean
+
+      <h2 className="mt-2 text-3xl font-bold text-slate-900">
+        Here’s what we found
       </h2>
-      <p className="mt-2 text-sm text-slate-600">
-        Review this explanation carefully. It is meant to help you understand the document, not replace professional advice.
+
+      <p className="mt-3 text-sm leading-6 text-slate-600">
+        This section summarizes the document in plain English, highlights important details, and suggests what you may want to review next.
       </p>
     </div>
 
-    <div className="rounded-2xl bg-white p-5 shadow-sm">
-  <pre className="whitespace-pre-wrap rounded-2xl bg-yellow-50 p-5 text-sm leading-7 text-gray-800">
-    {summary}
-  </pre>
-</div>
+    <div className="mt-5 grid gap-4 md:grid-cols-2">
+      <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5 shadow-sm">
+        <p className="text-xs font-bold uppercase tracking-wide text-emerald-700">
+          Extracted Answers
+        </p>
+        <p className="mt-2 text-sm leading-6 text-emerald-900">
+          The system looked for key information such as category, sender, amount, date, deadline, phone, email, website, and reference number.
+        </p>
+      </div>
+
+      <div className="rounded-2xl border border-yellow-200 bg-yellow-50 p-5 shadow-sm">
+        <p className="text-xs font-bold uppercase tracking-wide text-yellow-700">
+          AI Explanation
+        </p>
+        <p className="mt-2 text-sm leading-6 text-yellow-900">
+          The explanation below is written to help a regular person understand what the document appears to mean and what to review next.
+        </p>
+      </div>
+
+      <div className="rounded-2xl border border-blue-200 bg-blue-50 p-5 shadow-sm">
+        <p className="text-xs font-bold uppercase tracking-wide text-blue-700">
+          Suggested Next Steps
+        </p>
+        <p className="mt-2 text-sm leading-6 text-blue-900">
+          Review the important details before taking action. Keep a copy of the document and verify any dates, balances, or contact information.
+        </p>
+      </div>
+
+      <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5 shadow-sm">
+        <p className="text-xs font-bold uppercase tracking-wide text-amber-700">
+          Important Reminder
+        </p>
+        <p className="mt-2 text-sm leading-6 text-amber-900">
+          This tool helps explain documents, but it does not replace legal, financial, or professional advice.
+        </p>
+      </div>
+    </div>
+
+    <div className="mt-5 rounded-2xl bg-white p-5 shadow-sm">
+      <p className="mb-3 text-sm font-bold uppercase tracking-wide text-slate-600">
+        Full Analysis
+      </p>
+
+      <pre className="whitespace-pre-wrap rounded-2xl bg-white p-5 text-sm leading-7 text-gray-800">
+        {summary}
+      </pre>
+    </div>
   </div>
 )}
           {ocrText && (
