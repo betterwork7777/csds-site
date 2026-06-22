@@ -321,10 +321,25 @@ ${recommendedNextStep}
 `;
 
     return NextResponse.json({
-      success: true,
-      summary,
-      category,
-    });
+  success: true,
+  summary,
+  category,
+  documentMatch,
+  analysisWarning,
+  sender: possibleSender,
+  amountFound,
+  dateFound,
+  deadlineFound,
+  riskLevel,
+  documentStatus,
+  suggestedActions,
+  phoneFound,
+  emailFound,
+  websiteFound,
+  referenceFound,
+  aiSummary,
+  recommendedNextStep,
+});
   } catch (error) {
     return NextResponse.json(
       {
