@@ -9,6 +9,7 @@ export default function DocumentsPage() {
   const [message, setMessage] = useState("");
   const [ocrText, setOcrText] = useState("");
   const [summary, setSummary] = useState("");
+const [analysisData, setAnalysisData] = useState<any>(null);
 
   async function handleUpload() {
     if (!file) {
@@ -18,8 +19,9 @@ export default function DocumentsPage() {
 
     setUploading(true);
     setMessage("");
-    setOcrText("");
-    setSummary("");
+setOcrText("");
+setSummary("");
+setAnalysisData(null);
 
     const filePath = `${Date.now()}-${file.name}`;
 
@@ -80,6 +82,7 @@ const summaryData = await summaryResponse.json();
 
 if (summaryData.success) {
   setSummary(summaryData.summary);
+  setAnalysisData(summaryData);
 }
 
 setMessage("OCR complete.");
@@ -194,16 +197,7 @@ setMessage("OCR complete.");
       </div>
     </div>
 
-    <div className="mt-5 rounded-2xl bg-white p-5 shadow-sm">
-      <p className="mb-3 text-sm font-bold uppercase tracking-wide text-slate-600">
-        Full Analysis
-      </p>
-
-      <pre className="whitespace-pre-wrap rounded-2xl bg-white p-5 text-sm leading-7 text-gray-800">
-        {summary}
-      </pre>
-    </div>
-  </div>
+    
 )}
           {ocrText && (
             <div className="mt-8 rounded-2xl border bg-white p-6 shadow-sm">
