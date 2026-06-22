@@ -195,9 +195,8 @@ setMessage("OCR complete.");
           This tool helps explain documents, but it does not replace legal, financial, or professional advice.
         </p>
       </div>
-    </div>
-
-    
+        </div>
+  </div>
 )}
           {ocrText && (
             <div className="mt-8 rounded-2xl border bg-white p-6 shadow-sm">
