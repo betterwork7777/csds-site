@@ -159,43 +159,74 @@ setMessage("OCR complete.");
       </p>
     </div>
 
-    <div className="mt-5 grid gap-4 md:grid-cols-2">
-      <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5 shadow-sm">
-        <p className="text-xs font-bold uppercase tracking-wide text-emerald-700">
-          Extracted Answers
-        </p>
-        <p className="mt-2 text-sm leading-6 text-emerald-900">
-          The system looked for key information such as category, sender, amount, date, deadline, phone, email, website, and reference number.
-        </p>
-      </div>
+    {analysisData && (
+  <div className="mt-5 grid gap-4 md:grid-cols-2">
+    <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5 shadow-sm">
+      <p className="text-xs font-bold uppercase tracking-wide text-emerald-700">
+        Extracted Answers
+      </p>
 
-      <div className="rounded-2xl border border-yellow-200 bg-yellow-50 p-5 shadow-sm">
-        <p className="text-xs font-bold uppercase tracking-wide text-yellow-700">
-          AI Explanation
-        </p>
-        <p className="mt-2 text-sm leading-6 text-yellow-900">
-          The explanation below is written to help a regular person understand what the document appears to mean and what to review next.
-        </p>
+      <div className="mt-3 space-y-2 text-sm leading-6 text-emerald-950">
+        <p><strong>Document Type:</strong> {analysisData.category}</p>
+        <p><strong>Sender:</strong> {analysisData.sender}</p>
+        <p><strong>Amount:</strong> {analysisData.amountFound}</p>
+        <p><strong>Document Date:</strong> {analysisData.dateFound}</p>
+        <p><strong>Deadline:</strong> {analysisData.deadlineFound}</p>
+        <p><strong>Reference:</strong> {analysisData.referenceFound}</p>
+        <p><strong>Phone:</strong> {analysisData.phoneFound}</p>
+        <p><strong>Email:</strong> {analysisData.emailFound}</p>
+        <p><strong>Website:</strong> {analysisData.websiteFound}</p>
       </div>
+    </div>
 
-      <div className="rounded-2xl border border-blue-200 bg-blue-50 p-5 shadow-sm">
-        <p className="text-xs font-bold uppercase tracking-wide text-blue-700">
-          Suggested Next Steps
-        </p>
-        <p className="mt-2 text-sm leading-6 text-blue-900">
-          Review the important details before taking action. Keep a copy of the document and verify any dates, balances, or contact information.
-        </p>
-      </div>
+    <div className="rounded-2xl border border-yellow-200 bg-yellow-50 p-5 shadow-sm">
+      <p className="text-xs font-bold uppercase tracking-wide text-yellow-700">
+        AI Explanation
+      </p>
 
-      <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5 shadow-sm">
-        <p className="text-xs font-bold uppercase tracking-wide text-amber-700">
-          Important Reminder
-        </p>
-        <p className="mt-2 text-sm leading-6 text-amber-900">
+      <p className="mt-3 whitespace-pre-wrap text-sm leading-7 text-yellow-950">
+        {analysisData.aiSummary}
+      </p>
+    </div>
+
+    <div className="rounded-2xl border border-blue-200 bg-blue-50 p-5 shadow-sm">
+      <p className="text-xs font-bold uppercase tracking-wide text-blue-700">
+        Suggested Next Steps
+      </p>
+
+      <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-blue-950">
+        {analysisData.suggestedActions?.map((action: string, index: number) => (
+          <li key={index}>{action}</li>
+        ))}
+      </ul>
+
+      <p className="mt-4 text-sm font-semibold leading-6 text-blue-950">
+        {analysisData.recommendedNextStep}
+      </p>
+    </div>
+
+    <div className="rounded-2xl border border-orange-200 bg-orange-50 p-5 shadow-sm">
+      <p className="text-xs font-bold uppercase tracking-wide text-orange-700">
+        Important Reminder
+      </p>
+
+      <div className="mt-3 space-y-2 text-sm leading-6 text-orange-950">
+        <p><strong>Risk Level:</strong> {analysisData.riskLevel}</p>
+        <p><strong>Status:</strong> {analysisData.documentStatus}</p>
+
+        {analysisData.analysisWarning !== "No major document mismatch detected." && (
+          <p className="font-semibold text-red-700">
+            {analysisData.analysisWarning}
+          </p>
+        )}
+
+        <p className="pt-2 text-xs leading-5 text-orange-800">
           This tool helps explain documents, but it does not replace legal, financial, or professional advice.
         </p>
       </div>
-        </div>
+    </div>
+  </div>
+)}
   </div>
 )}
           {ocrText && (
